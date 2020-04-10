@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" type="image/png" href="images/parrot.svg" />
+    <link rel="stylesheet" href="css/style.css" />
+    <title>Accessibility Final Group 2</title>
+  </head>
+  <body>
+    <h1>Alt Text Generator</h1>
+    <main>
+      <div class="col2">
+        <form action="">
+          <div class="box__input">
+            <input
+              class="box__file"
+              type="file"
+              name="img"
+              id="img"
+              accept="image/*"
+            />
+            <label for="file"
+              ><strong>Choose a file</strong
+              ><span class="box__dragndrop"> or drag it here</span>.</label
+            >
+            <button class="box__button" type="submit">Upload</button>
+          </div>
+          <div class="box__uploading">Uploading&hellip;</div>
+          <div class="box__success">Done!</div>
+          <div class="box__error">Error! <span></span>.</div>
+
+          <!-- <label for="img">Your image:</label>
+          <div id="wrapper">
+            <input type="file" name="img" id="img" accept="image/*" /><br />
+            <div id="preview"></div>
+          </div> -->
+          <!-- <input type="submit" value="Run Generator" name="submit" /> -->
+        </form>
+      </div>
+      <div class="col2">
+        <label for="nouns">Generated Nouns</label>
+        <input type="text" name="nouns" id="nouns" />
+        <label for="nouns">Generated Alt Text</label>
+        <input type="text" name="alt" id="alt" />
+      </div>
+    </main>
+
+    <div id="instructions">
+      <h2>How To:</h2>
+      <p>Drag and drop or uplaod image</p>
+      <p>Accepted types: All image types</p>
+    </div>
+  </body>
+  <footer>
+    <div>
+      Icons made by
+      <a href="https://www.flaticon.com/authors/freepik" title="Freepik"
+        >Freepik</a
+      >
+      from
+      <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
+    </div>
+  </footer>
+  <script
+    type="text/javascript"
+    src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"
+  ></script>
+  <script type="text/javascript" src="js/index.js"></script>
+</html>

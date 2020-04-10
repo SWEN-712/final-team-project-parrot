@@ -1,0 +1,75 @@
+:root {
+  font-size: 16px;
+}
+
+main {
+  display: grid;
+  grid-template-columns: 50% 50%;
+  max-width: 960px;
+  margin: 0 auto;
+}
+main .col2 {
+  padding: 30px;
+}
+
+body {
+  color: #000000;
+  background-color: #eeeeee;
+  padding: 0;
+  margin: 30px;
+}
+body::-webkit-scrollbar-corner {
+  background: #eeeeee;
+}
+body::-webkit-scrollbar {
+  width: 0.75rem;
+}
+body::-webkit-scrollbar-track {
+  background: #1e1e24;
+}
+body::-webkit-scrollbar-thumb {
+  background: #2eaae2;
+}
+
+/*-----------Forms/buttons-------*/
+input[type=text] {
+  font-size: 2rem;
+  width: 100%;
+  padding: 1rem 1rem;
+  margin: 1rem 0rem;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+input[type=submit] {
+  font-size: 2rem;
+  width: 100%;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #2eaae2;
+}
+
+button {
+  font-size: 1rem;
+  background-color: #4caf50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #2eaae2;
+}
