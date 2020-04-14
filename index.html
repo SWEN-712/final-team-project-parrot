@@ -12,8 +12,32 @@
     <main>
       <div class="col2">
         <form action="">
+<<<<<<< HEAD
           <div class="dragNDrop">
             <label id="label" for="img">Your image:</label><br />
+=======
+          <div class="box__input">
+            <input
+              class="box__file"
+              type="file"
+              name="img"
+              id="inputImage"
+              accept="image/*"
+            />
+            <label for="file"
+              ><strong>Choose a file</strong
+              ><span class="box__dragndrop"> or drag it here</span>.</label
+            >
+            <button id="uploadButton" class="box__button" type="button">Upload</button>
+          </div>
+          <div class="box__uploading">Uploading&hellip;</div>
+          <div class="box__success">Done!</div>
+          <div class="box__error">Error! <span></span>.</div>
+
+          <!-- <label for="img">Your image:</label>
+          <div id="wrapper">
+            <input type="file" name="img" id="img" accept="image/*" /><br />
+>>>>>>> master
             <div id="preview"></div>
             <input type="file" name="img" id="img" accept="image/*" />
           </div>
@@ -22,7 +46,7 @@
       </div>
       <div class="col2">
         <label for="nouns">Generated Nouns</label>
-        <input type="text" name="nouns" id="nouns" />
+        <input id="generatedNouns" type="text" name="nouns" id="nouns" />
         <label for="nouns">Generated Alt Text</label>
         <input type="text" name="alt" id="alt" />
       </div>
@@ -47,5 +71,6 @@
     type="text/javascript"
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"
   ></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </html>
