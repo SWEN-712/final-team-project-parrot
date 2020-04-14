@@ -5,31 +5,24 @@ $bckgrnd-main: #eeeeee;
 
 $highlight: #2eaae2;
 
-//Theme Transitions
-$transition-speed: 600ms;
-
-//Side Width
-$side-width: 16rem;
-
 :root {
   font-size: 16px;
 }
 
 main {
   display: grid;
+  margin: 30px;
+  padding: 0;
+  margin: 30px;
   grid-template-columns: 50% 50%;
-  max-width: 960px;
-  margin: 0 auto;
   .col2 {
-    padding: 30px;
+    padding-top: 30px;
   }
 }
 
 body {
   color: $text-primary;
   background-color: $bckgrnd-main;
-  padding: 0;
-  margin: 30px;
 
   //Webkit-scrollbar
   &::-webkit-scrollbar-corner {
@@ -45,6 +38,7 @@ body {
   &::-webkit-scrollbar-thumb {
     background: $highlight;
   }
+  margin: 0 !important;
 }
 
 /*-----------Forms/buttons-------*/
@@ -88,4 +82,31 @@ button {
 
 button:hover {
   background-color: $highlight;
+}
+
+#title {
+  background-color: black;
+  color: white;
+  margin-top: 0;
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+#label {
+  display: none;
+}
+
+.thumb-image {
+  width: 50%;
+  height: 50%;
+}
+
+.dragNDrop {
+  border: dotted #add8e6;
+  text-align: center;
+  padding-bottom: 20px;
 }

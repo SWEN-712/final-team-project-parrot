@@ -13,6 +13,7 @@ $("#img").on("change", function () {
     };
     image_holder.show();
     reader.readAsDataURL($(this)[0].files[0]);
+    $("#label").show();
   } else {
     alert("This browser does not support FileReader.");
   }

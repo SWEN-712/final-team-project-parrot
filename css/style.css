@@ -4,19 +4,19 @@
 
 main {
   display: grid;
+  margin: 30px;
+  padding: 0;
+  margin: 30px;
   grid-template-columns: 50% 50%;
-  max-width: 960px;
-  margin: 0 auto;
 }
 main .col2 {
-  padding: 30px;
+  padding-top: 30px;
 }
 
 body {
   color: #000000;
   background-color: #eeeeee;
-  padding: 0;
-  margin: 30px;
+  margin: 0 !important;
 }
 body::-webkit-scrollbar-corner {
   background: #eeeeee;
@@ -72,4 +72,31 @@ button {
 
 button:hover {
   background-color: #2eaae2;
+}
+
+#title {
+  background-color: black;
+  color: white;
+  margin-top: 0;
+  text-align: center;
+}
+
+footer {
+  position: fixed;
+  bottom: 0;
+}
+
+#label {
+  display: none;
+}
+
+.thumb-image {
+  width: 50%;
+  height: 50%;
+}
+
+.dragNDrop {
+  border: dotted #add8e6;
+  text-align: center;
+  padding-bottom: 20px;
 }
