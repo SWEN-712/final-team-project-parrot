@@ -27,6 +27,19 @@
           </button>
         </form>
       </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
       <div class="col2">
         <label for="generatedNouns">Generated Nouns</label>
         <input id="generatedNouns" type="text" name="generatedNouns" />
@@ -52,10 +65,36 @@
       <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a>
     </div>
   </footer>
+
   <script
     type="text/javascript"
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"
   ></script>
+
+
+<!--  <script src="/axios.min.js"></script>-->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <script>
+    (function () {
+      var output = document.getElementById('output');
+      document.getElementById('uploadButton').onclick = function () {
+        var data = new FormData();
+        data.append('image', document.getElementById('inputImage').files[0]);
+
+        axios.post('http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict', data)
+                .then(function (res) {
+                  var alttext = res.data.predictions[0].caption;
+                  document.getElementById("IBMalt").value = alttext;
+                })
+                .catch(function (err) {
+                  output.className = 'container text-danger';
+                  output.innerHTML = err.message;
+                });
+      };
+    })();
+  </script>
+
+
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
 </html>

@@ -1,5 +1,7 @@
 const url =
   "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBh7Et-4oeMg32_qhiGaaPO8iTL49y1cUY";
+const IBMurl=
+    "http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict";
 const data = {
   requests: [
     {
@@ -22,6 +24,11 @@ const data = {
 };
 let imagepath = "";
 
+let imageFile = "";
+
+
+
+
 // ########## Listeners
 //Display Image preview
 $("#inputImage").on("change", function () {
@@ -38,6 +45,7 @@ $("#inputImage").on("change", function () {
     };
     image_holder.show();
     reader.readAsDataURL($(this)[0].files[0]);
+
   } else {
     alert("This browser does not support FileReader.");
   }
@@ -46,6 +54,18 @@ $("#inputImage").on("change", function () {
 $("#inputImage").on("change", function () {
   encodeBase64(this);
 });
+
+function fileImage(elm) {
+  const file = elm.files[0],
+      imgReader = new FileReader();
+
+  imgReader.onloadend = function () {
+    // console.log('Base64 Format', imgReader.result);
+    imagepath = imgReader.result.split(",")[1];
+  };
+  imgReader.readAsDataURL(file);
+
+}
 
 $("#uploadButton").on("click", function () {
   getImageTags();
@@ -68,6 +88,7 @@ function getImageTags() {
     .catch((err) => console.log(err));
 }
 
+
 function encodeBase64(elm) {
   const file = elm.files[0],
     imgReader = new FileReader();
@@ -78,3 +99,5 @@ function encodeBase64(elm) {
   };
   imgReader.readAsDataURL(file);
 }
+
+
