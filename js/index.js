@@ -1,7 +1,7 @@
 const url =
   "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBh7Et-4oeMg32_qhiGaaPO8iTL49y1cUY";
-const IBMurl=
-    "http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict";
+const IBMurl =
+  "http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict";
 const data = {
   requests: [
     {
@@ -26,9 +26,6 @@ let imagepath = "";
 
 let imageFile = "";
 
-
-
-
 // ########## Listeners
 //Display Image preview
 $("#inputImage").on("change", function () {
@@ -45,7 +42,6 @@ $("#inputImage").on("change", function () {
     };
     image_holder.show();
     reader.readAsDataURL($(this)[0].files[0]);
-
   } else {
     alert("This browser does not support FileReader.");
   }
@@ -57,19 +53,22 @@ $("#inputImage").on("change", function () {
 
 function fileImage(elm) {
   const file = elm.files[0],
-      imgReader = new FileReader();
+    imgReader = new FileReader();
 
   imgReader.onloadend = function () {
     // console.log('Base64 Format', imgReader.result);
     imagepath = imgReader.result.split(",")[1];
   };
   imgReader.readAsDataURL(file);
-
 }
 
 $("#uploadButton").on("click", function () {
   getImageTags();
 });
+
+// $("#copy").on("click", function () {
+//   copyText();
+// });
 
 // ######### Functions
 function getImageTags() {
@@ -88,7 +87,6 @@ function getImageTags() {
     .catch((err) => console.log(err));
 }
 
-
 function encodeBase64(elm) {
   const file = elm.files[0],
     imgReader = new FileReader();
@@ -100,4 +98,22 @@ function encodeBase64(elm) {
   imgReader.readAsDataURL(file);
 }
 
+// #### Tooltips
+function copyText() {
+  /* Get the text field */
+  var copyText = $("#altBuilding");
 
+  /* Focus on text */
+  copyText.select();
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+  console.log(copyText.val());
+  var tooltip = $("#myTooltip");
+  tooltip.html("Copied: " + copyText.val());
+}
+
+function outFunc() {
+  var tooltip = $("#myTooltip");
+  tooltip.html("Copy to clipboard");
+}

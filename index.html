@@ -27,31 +27,46 @@
           </button>
         </form>
       </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
       <div class="col2">
-        <label for="generatedNouns">Generated Nouns</label>
+        <label for="generatedNouns">Generated Nouns (Google):</label>
         <input id="generatedNouns" type="text" name="generatedNouns" />
-        <label for="alt">Generated Alt Text Option #1:</label>
+        <label for="alt"
+          >Generated Alt Text Option #1 (machine learning):</label
+        >
         <input type="text" name="alt" id="alt" />
-        <label for="IBMalt">Generated Alt Text Option #2:</label>
+        <label for="IBMalt">Generated Alt Text Option #2 (IBM):</label>
         <input type="text" name="alt" id="IBMalt" />
       </div>
+      <div class="col1 altBuilder">
+        <label for="altBuilding">Build Your Alt Text</label>
+        <input type="text" name="altBuilding" id="altBuilding" />
+        <div class="tooltip">
+          <button id="copy" onClick="copyText()" onmouseout="outFunc()">
+            <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
+            Copy text
+          </button>
+        </div>
+      </div>
+
       <div id="instructions">
         <h2>How To:</h2>
-        <p>Drag and drop or uplaod image</p>
-        <p>Accepted types: All image types</p>
+        <ol>
+          <li>Choose an image to upload (we do not keep any images)</li>
+          <li>
+            Upload the image via either drag and drop inside the blue dotted
+            section or by selecting "<strong>Choose File</strong>"<br />
+            Accepted images: All image types are accepted.
+          </li>
+          <li>
+            Select the "<strong>Run Generation</strong>" button to generate alt
+            text
+          </li>
+          <li>
+            The generated text comes from Google (nouns), IBM (full alt text),
+            and a machine learning alorithm (full alt text)
+          </li>
+          <li></li>
+        </ol>
       </div>
     </main>
   </body>
@@ -71,29 +86,31 @@
     src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"
   ></script>
 
-
-<!--  <script src="/axios.min.js"></script>-->
+  <!--  <script src="/axios.min.js"></script>-->
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script>
     (function () {
-      var output = document.getElementById('output');
-      document.getElementById('uploadButton').onclick = function () {
+      var output = document.getElementById("output");
+      document.getElementById("uploadButton").onclick = function () {
         var data = new FormData();
-        data.append('image', document.getElementById('inputImage').files[0]);
+        data.append("image", document.getElementById("inputImage").files[0]);
 
-        axios.post('http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict', data)
-                .then(function (res) {
-                  var alttext = res.data.predictions[0].caption;
-                  document.getElementById("IBMalt").value = alttext;
-                })
-                .catch(function (err) {
-                  output.className = 'container text-danger';
-                  output.innerHTML = err.message;
-                });
+        axios
+          .post(
+            "http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict",
+            data
+          )
+          .then(function (res) {
+            var alttext = res.data.predictions[0].caption;
+            document.getElementById("IBMalt").value = alttext;
+          })
+          .catch(function (err) {
+            output.className = "container text-danger";
+            output.innerHTML = err.message;
+          });
       };
     })();
   </script>
-
 
   <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
   <script type="text/javascript" src="js/index.js"></script>
