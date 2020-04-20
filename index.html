@@ -29,13 +29,17 @@
       </div>
       <div class="col2">
         <label for="generatedNouns">Generated Nouns (Google):</label>
-        <input id="generatedNouns" type="text" name="generatedNouns" />
+        <textarea
+          id="generatedNouns"
+          type="text"
+          name="generatedNouns"
+        ></textarea>
         <label for="alt"
           >Generated Alt Text Option #1 (machine learning):</label
         >
-        <input type="text" name="alt" id="alt" />
+        <textarea type="text" name="alt" id="alt"></textarea>
         <label for="IBMalt">Generated Alt Text Option #2 (IBM):</label>
-        <input type="text" name="alt" id="IBMalt" />
+        <textarea type="text" name="alt" id="IBMalt"></textarea>
       </div>
       <div class="col1 altBuilder">
         <label for="altBuilding">Build Your Alt Text</label>
@@ -43,7 +47,7 @@
         <div class="tooltip">
           <button id="copy" onClick="copyText()" onmouseout="outFunc()">
             <span class="tooltiptext" id="myTooltip">Copy to clipboard</span>
-            Copy text
+            Copy Text
           </button>
         </div>
       </div>
@@ -65,7 +69,12 @@
             The generated text comes from Google (nouns), IBM (full alt text),
             and a machine learning alorithm (full alt text)
           </li>
-          <li></li>
+          <li>
+            Use the section called "<strong>Build Your Alt Text</strong>" to
+            develop your alt text and copy it using the "<strong>
+              Copy Text</strong
+            >" button
+          </li>
         </ol>
       </div>
     </main>

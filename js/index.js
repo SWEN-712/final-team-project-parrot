@@ -108,7 +108,7 @@ function copyText() {
 
   /* Copy the text inside the text field */
   document.execCommand("copy");
-  console.log(copyText.val());
+
   var tooltip = $("#myTooltip");
   tooltip.html("Copied: " + copyText.val());
 }

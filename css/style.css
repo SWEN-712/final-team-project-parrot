@@ -36,7 +36,8 @@ body::-webkit-scrollbar-thumb {
 }
 
 /*-----------Forms/buttons-------*/
-input[type=text] {
+input[type=text],
+textarea {
   font-size: 2rem;
   width: 100%;
   padding: 1rem 1rem;
