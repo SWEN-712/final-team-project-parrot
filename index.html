@@ -34,12 +34,13 @@
           type="text"
           name="generatedNouns"
         ></textarea>
-        <label for="alt"
-          >Generated Alt Text Option #1 (machine learning):</label
-        >
-        <textarea type="text" name="alt" id="alt"></textarea>
+
+        <label for="Microalt">Generated Alt Text Option #1 (Microsoft):</label>
+        <textarea type="text" name="alt" id="Microalt"></textarea>
+
         <label for="IBMalt">Generated Alt Text Option #2 (IBM):</label>
         <textarea type="text" name="alt" id="IBMalt"></textarea>
+
       </div>
       <div class="col1 altBuilder">
         <label for="altBuilding">Build Your Alt Text</label>
@@ -104,6 +105,7 @@
         var data = new FormData();
         data.append("image", document.getElementById("inputImage").files[0]);
 
+        // Get IBM description
         axios
           .post(
             "http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict",
@@ -117,7 +119,7 @@
             output.className = "container text-danger";
             output.innerHTML = err.message;
           });
-      };
+        };
     })();
   </script>
 

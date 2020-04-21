@@ -24,7 +24,11 @@ const data = {
 };
 let imagepath = "";
 
-let imageFile = "";
+//Microsoft API Stuff
+var COMPUTER_VISION_SUB_KEY = "f966a154aad14306bec3830e4e7ef4af";
+var COMPUTER_VISION_ENDPOINT = "https://accessibilityvisionapi.cognitiveservices.azure.com/";
+var COMPUTER_VISION_URL = COMPUTER_VISION_ENDPOINT + "vision/v2.1/analyze";
+var imageBinFile8Array;
 
 // ########## Listeners
 //Display Image preview
@@ -49,7 +53,20 @@ $("#inputImage").on("change", function () {
 
 $("#inputImage").on("change", function () {
   encodeBase64(this);
+  getFileBinary(this);
 });
+
+function getFileBinary(elm) {
+  const file = elm.files[0],
+    imgReader = new FileReader();
+
+  imgReader.onloadend = function () {
+    var imageBinFileBuffer = imgReader.result;
+    imageBinFile8Array = new Uint8Array(imageBinFileBuffer);
+  }
+
+  imgReader.readAsArrayBuffer(file);
+}
 
 function fileImage(elm) {
   const file = elm.files[0],
@@ -64,6 +81,7 @@ function fileImage(elm) {
 
 $("#uploadButton").on("click", function () {
   getImageTags();
+  getImageDescription();
 });
 
 // $("#copy").on("click", function () {
@@ -85,6 +103,33 @@ function getImageTags() {
       $("#generatedNouns").val(tags.join());
     })
     .catch((err) => console.log(err));
+}
+
+function getImageDescription() {
+  var params = {
+    "visualFeatures": "Categories,Description,Color",
+    "details": "",
+    "language": "en",
+  };
+
+  var visionUrl = COMPUTER_VISION_URL + "?" + $.param(params);
+
+  const options = {
+    headers: {
+    'Content-Type': "application/octet-stream",
+    'Ocp-Apim-Subscription-Key': COMPUTER_VISION_SUB_KEY
+    }
+  };
+
+  axios
+  .post(
+    visionUrl, imageBinFile8Array, options
+  )
+  .then(function(data) {
+    var textOfPicture = data.data["description"]["captions"][0].text;
+    document.getElementById("Microalt").value = textOfPicture;
+  })
+  .catch((err) => console.log(err));
 }
 
 function encodeBase64(elm) {
