@@ -1,7 +1,5 @@
 const url =
   "https://vision.googleapis.com/v1/images:annotate?key=AIzaSyBh7Et-4oeMg32_qhiGaaPO8iTL49y1cUY";
-const IBMurl =
-  "http://max-image-caption-generator.max.us-south.containers.appdomain.cloud/model/predict";
 const data = {
   requests: [
     {
@@ -22,13 +20,11 @@ const data = {
     },
   ],
 };
+const azureKey = '67c784f91bb84c77b9229d1abbee12c5';
+const azureUrl = 'https://westcentralus.api.cognitive.microsoft.com/vision/v2.1/analyze?visualFeatures=Description'
 let imagepath = "";
 
-//Microsoft API Stuff
-var COMPUTER_VISION_SUB_KEY = "f966a154aad14306bec3830e4e7ef4af";
-var COMPUTER_VISION_ENDPOINT = "https://accessibilityvisionapi.cognitiveservices.azure.com/";
-var COMPUTER_VISION_URL = COMPUTER_VISION_ENDPOINT + "vision/v2.1/analyze";
-var imageBinFile8Array;
+let imageFile = "";
 
 // ########## Listeners
 //Display Image preview
@@ -45,6 +41,7 @@ $("#inputImage").on("change", function () {
       }).appendTo(image_holder);
     };
     image_holder.show();
+    imageFile = $(this)[0].files[0];
     reader.readAsDataURL($(this)[0].files[0]);
   } else {
     alert("This browser does not support FileReader.");
@@ -53,20 +50,7 @@ $("#inputImage").on("change", function () {
 
 $("#inputImage").on("change", function () {
   encodeBase64(this);
-  getFileBinary(this);
 });
-
-function getFileBinary(elm) {
-  const file = elm.files[0],
-    imgReader = new FileReader();
-
-  imgReader.onloadend = function () {
-    var imageBinFileBuffer = imgReader.result;
-    imageBinFile8Array = new Uint8Array(imageBinFileBuffer);
-  }
-
-  imgReader.readAsArrayBuffer(file);
-}
 
 function fileImage(elm) {
   const file = elm.files[0],
@@ -81,7 +65,7 @@ function fileImage(elm) {
 
 $("#uploadButton").on("click", function () {
   getImageTags();
-  getImageDescription();
+  getCaptionMicrosoft();
 });
 
 // $("#copy").on("click", function () {
@@ -103,33 +87,6 @@ function getImageTags() {
       $("#generatedNouns").val(tags.join());
     })
     .catch((err) => console.log(err));
-}
-
-function getImageDescription() {
-  var params = {
-    "visualFeatures": "Categories,Description,Color",
-    "details": "",
-    "language": "en",
-  };
-
-  var visionUrl = COMPUTER_VISION_URL + "?" + $.param(params);
-
-  const options = {
-    headers: {
-    'Content-Type': "application/octet-stream",
-    'Ocp-Apim-Subscription-Key': COMPUTER_VISION_SUB_KEY
-    }
-  };
-
-  axios
-  .post(
-    visionUrl, imageBinFile8Array, options
-  )
-  .then(function(data) {
-    var textOfPicture = data.data["description"]["captions"][0].text;
-    document.getElementById("Microalt").value = textOfPicture;
-  })
-  .catch((err) => console.log(err));
 }
 
 function encodeBase64(elm) {
@@ -161,4 +118,23 @@ function copyText() {
 function outFunc() {
   var tooltip = $("#myTooltip");
   tooltip.html("Copy to clipboard");
+}
+
+function getCaptionMicrosoft() {
+  let formData = new FormData();
+  formData.append("data", imageFile);
+
+  axios({
+    method: 'POST',
+    url: azureUrl,
+    headers: {
+      'Ocp-Apim-Subscription-Key': azureKey
+    },
+    data: formData
+  }).then(res => {
+    if(res && res.data.description.captions[0]) {
+      $("#AzureAlt").val()
+      document.getElementById("AzureAlt").value = res.data.description.captions[0].text;
+    }
+  }).catch(e => console.log("Error getting Microsoft description", e));
 }
