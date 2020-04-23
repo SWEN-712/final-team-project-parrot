@@ -1,6 +1,7 @@
 # final-team-project-parrot
 
 <h2>How To:</h2>
+    Open the index file in your browser of choice
     <ol>
         <li>Choose an image to upload (we do not keep any images)</li>
         <li>
